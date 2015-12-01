@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>github GET REST API test</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+    body {margin:0px;font-size:large;}
+    </style>
+    <script type="text/javascript">
+    //
+    function onLoad() {
+        //alert("body loaded.");
+        console.info("body loaded.");
+        onDeviceReady();
+    }
+    </script>
+</head>
+<body onload="onLoad()">
+<h3>github GET REST API test</h3>
+<button id="button-load-data" >Load Data</button>
+<div id=content style="margin:1em;">content</div>
+<pre id=info>pre</pre>
+</body>
+<script type="text/javascript" charset="utf-8" src="zepto-1.1.6.js"></script>
+<script type="text/javascript" charset="utf-8" >
+    //
+var theNames = "";
+    //
+$('#button-load-data').click(function() {
+    console.info("#button-load-data");
+
+    $.get("https://api.github.com/users", function(data){
+        // make pretty - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+        console.log(JSON.stringify(data, null, '\t'));
+        console.log(data.length);
+        for (i = 0; i < data.length; i++) { 
+            theNames += i + ":" + data[i].login + "<br>";
+        }
+      
+        $('#info').html("<b>login:</b><br>" + theNames);
+    });
+
+});
+</script>
+</html>
