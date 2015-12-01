@@ -31,13 +31,11 @@ $('#button-load-data').click(function() {
     console.info("#button-load-data");
 
     $.get("https://api.github.com/users", function(data){
-        // make pretty - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
-        console.log(JSON.stringify(data, null, '\t'));
-        console.log(data.length);
+        //console.log(JSON.stringify(data, null, '\t'));
+        //console.log(data.length);
         for (i = 0; i < data.length; i++) { 
             theNames += i + ":" + data[i].login + "<br>";
-        }
-      
+        }   
         $('#info').html("<b>login:</b><br>" + theNames);
     });
 
